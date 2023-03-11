@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 
-namespace Lucrare_licenta.Pages.Vehicule
+namespace Lucrare_licenta.Pages.Oferte
 {
     public class CreateModel : PageModel
     {
@@ -21,12 +21,14 @@ namespace Lucrare_licenta.Pages.Vehicule
 
         public IActionResult OnGet()
         {
-        ViewData["OfertaID"] = new SelectList(_context.Oferta, "ID", "ID");
+        ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
+        ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+        ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public Vehicul Vehicul { get; set; }
+        public Oferta Oferta { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -37,7 +39,7 @@ namespace Lucrare_licenta.Pages.Vehicule
                 return Page();
             }
 
-            _context.Vehicul.Add(Vehicul);
+            _context.Oferta.Add(Oferta);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

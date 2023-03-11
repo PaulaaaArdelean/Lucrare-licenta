@@ -1,0 +1,92 @@
+﻿@page
+@model Lucrare_licenta.Pages.Oferte.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Oferta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Oferta.ClientID" class="control-label"></label>
+                <select asp-for="Oferta.ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.NumarIdentificare" class="control-label"></label>
+                <input asp-for="Oferta.NumarIdentificare" class="form-control" />
+                <span asp-validation-for="Oferta.NumarIdentificare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.NrInmatriculare" class="control-label"></label>
+                <input asp-for="Oferta.NrInmatriculare" class="form-control" />
+                <span asp-validation-for="Oferta.NrInmatriculare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.Marca" class="control-label"></label>
+                <input asp-for="Oferta.Marca" class="form-control" />
+                <span asp-validation-for="Oferta.Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.Model" class="control-label"></label>
+                <input asp-for="Oferta.Model" class="form-control" />
+                <span asp-validation-for="Oferta.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.AnFabricatie" class="control-label"></label>
+                <input asp-for="Oferta.AnFabricatie" class="form-control" />
+                <span asp-validation-for="Oferta.AnFabricatie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.CapacitateCilindrica" class="control-label"></label>
+                <input asp-for="Oferta.CapacitateCilindrica" class="form-control" />
+                <span asp-validation-for="Oferta.CapacitateCilindrica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.SerieCIV" class="control-label"></label>
+                <input asp-for="Oferta.SerieCIV" class="form-control" />
+                <span asp-validation-for="Oferta.SerieCIV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.NrLocuri" class="control-label"></label>
+                <input asp-for="Oferta.NrLocuri" class="form-control" />
+                <span asp-validation-for="Oferta.NrLocuri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.MasaMaxima" class="control-label"></label>
+                <input asp-for="Oferta.MasaMaxima" class="form-control" />
+                <span asp-validation-for="Oferta.MasaMaxima" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.Putere" class="control-label"></label>
+                <input asp-for="Oferta.Putere" class="form-control" />
+                <span asp-validation-for="Oferta.Putere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.CategorieVehiculID" class="control-label"></label>
+                <select asp-for="Oferta.CategorieVehiculID" class ="form-control" asp-items="ViewBag.CategorieVehiculID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oferta.TipCombustibilID" class="control-label"></label>
+                <select asp-for="Oferta.TipCombustibilID" class ="form-control" asp-items="ViewBag.TipCombustibilID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

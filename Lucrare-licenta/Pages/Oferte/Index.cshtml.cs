@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace Lucrare_licenta.Pages.Vehicule
+namespace Lucrare_licenta.Pages.Oferte
 {
     public class IndexModel : PageModel
     {
@@ -20,18 +19,16 @@ namespace Lucrare_licenta.Pages.Vehicule
             _context = context;
         }
 
-        public IList<Vehicul> Vehicul { get;set; } = default!;
+        public IList<Oferta> Oferta { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Vehicul != null)
+            if (_context.Oferta != null)
             {
-                Vehicul = await _context.Vehicul
-                .Include(v => v.Oferte)
-                      .ThenInclude(V=>V.TipCombustibil)
-                .Include(v => v.Oferte)
-                      .ThenInclude(V => V.CategorieVehicul)
-                .ToListAsync();
+                Oferta = await _context.Oferta
+                .Include(o => o.CategorieVehicul)
+                .Include(o => o.Client)
+                .Include(o => o.TipCombustibil).ToListAsync();
             }
         }
     }

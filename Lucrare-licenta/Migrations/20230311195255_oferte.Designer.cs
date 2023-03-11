@@ -4,6 +4,7 @@ using Lucrare_licenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    partial class Lucrare_licentaContextModelSnapshot : ModelSnapshot
+    [Migration("20230311195255_oferte")]
+    partial class oferte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,9 +143,6 @@ namespace Lucrare_licenta.Migrations
                     b.Property<int?>("CategorieVehiculID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Marca")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -182,8 +181,6 @@ namespace Lucrare_licenta.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CategorieVehiculID");
-
-                    b.HasIndex("ClientID");
 
                     b.HasIndex("TipCombustibilID");
 
@@ -273,11 +270,51 @@ namespace Lucrare_licenta.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<string>("AnFabricatie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CapacitateCilindrica")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("CategorieVehiculID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OfertaID")
+                    b.Property<int?>("ClientID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MasaMaxima")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NrInmatriculare")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NrLocuri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumarIdentificare")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Putere")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SerieCIV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TipCombustibilID")
                         .HasColumnType("int");
@@ -286,7 +323,7 @@ namespace Lucrare_licenta.Migrations
 
                     b.HasIndex("CategorieVehiculID");
 
-                    b.HasIndex("OfertaID");
+                    b.HasIndex("ClientID");
 
                     b.HasIndex("TipCombustibilID");
 
@@ -308,17 +345,11 @@ namespace Lucrare_licenta.Migrations
                         .WithMany("Oferte")
                         .HasForeignKey("CategorieVehiculID");
 
-                    b.HasOne("Lucrare_licenta.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientID");
-
                     b.HasOne("Lucrare_licenta.Models.TipCombustibil", "TipCombustibil")
                         .WithMany("Oferte")
                         .HasForeignKey("TipCombustibilID");
 
                     b.Navigation("CategorieVehicul");
-
-                    b.Navigation("Client");
 
                     b.Navigation("TipCombustibil");
                 });
@@ -349,19 +380,23 @@ namespace Lucrare_licenta.Migrations
 
             modelBuilder.Entity("Lucrare_licenta.Models.Vehicul", b =>
                 {
-                    b.HasOne("Lucrare_licenta.Models.CategorieVehicul", null)
+                    b.HasOne("Lucrare_licenta.Models.CategorieVehicul", "CategorieVehicul")
                         .WithMany("Vehicule")
                         .HasForeignKey("CategorieVehiculID");
 
-                    b.HasOne("Lucrare_licenta.Models.Oferta", "Oferte")
+                    b.HasOne("Lucrare_licenta.Models.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("OfertaID");
+                        .HasForeignKey("ClientID");
 
-                    b.HasOne("Lucrare_licenta.Models.TipCombustibil", null)
+                    b.HasOne("Lucrare_licenta.Models.TipCombustibil", "TipCombustibil")
                         .WithMany("Vehicule")
                         .HasForeignKey("TipCombustibilID");
 
-                    b.Navigation("Oferte");
+                    b.Navigation("CategorieVehicul");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("TipCombustibil");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.CategorieVehicul", b =>

@@ -11,5 +11,7 @@ namespace Lucrare_licenta.Models
 
         public string TipulCombustibil { get; set; }
         public ICollection<Vehicul>? Vehicule { get; set; }
+        public ICollection<Oferta>? Oferte { get; set; }
+
     }
 }

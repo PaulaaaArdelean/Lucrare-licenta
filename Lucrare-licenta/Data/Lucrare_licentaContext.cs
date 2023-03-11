@@ -27,5 +27,7 @@ namespace Lucrare_licenta.Data
         public DbSet<Lucrare_licenta.Models.PersoanaFizica> PersoanaFizica { get; set; }
 
         public DbSet<Lucrare_licenta.Models.PersoanaJuridica> PersoanaJuridica { get; set; }
+
+        public DbSet<Lucrare_licenta.Models.Oferta> Oferta { get; set; }
     }
 }

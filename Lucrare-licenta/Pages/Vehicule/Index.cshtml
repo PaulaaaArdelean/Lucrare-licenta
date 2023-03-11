@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -14,40 +15,40 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].NumarIdentificare)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.NumarIdentificare)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].NrInmatriculare)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.NrInmatriculare)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].Marca)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.Marca)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].Model)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].AnFabricatie)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.AnFabricatie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].CapacitateCilindrica)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.CapacitateCilindrica)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].SerieCIV)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.SerieCIV)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].NrLocuri)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.NrLocuri)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].MasaMaxima)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.MasaMaxima)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].Putere)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.Putere)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].CategorieVehicul.CategoriaVehicul)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.CategorieVehicul.CategoriaVehicul)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vehicul[0].TipCombustibil.TipulCombustibil)
+                @Html.DisplayNameFor(model => model.Vehicul[0].Oferte.TipCombustibil.TipulCombustibil)
             </th>
             <th></th>
         </tr>
@@ -56,41 +57,41 @@
 @foreach (var item in Model.Vehicul) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NumarIdentificare)
+                @Html.DisplayFor(modelItem => item.Oferte.NumarIdentificare)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NrInmatriculare)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnFabricatie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CapacitateCilindrica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SerieCIV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NrLocuri)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MasaMaxima)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Putere)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategorieVehicul.CategoriaVehicul)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipCombustibil.TipulCombustibil)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.NrInmatriculare)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.AnFabricatie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.CapacitateCilindrica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.SerieCIV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.NrLocuri)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.MasaMaxima)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.Putere)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.CategorieVehicul.CategoriaVehicul)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oferte.TipCombustibil.TipulCombustibil)
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

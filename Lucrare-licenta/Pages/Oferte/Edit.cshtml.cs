@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 
-namespace Lucrare_licenta.Pages.Vehicule
+namespace Lucrare_licenta.Pages.Oferte
 {
     public class EditModel : PageModel
     {
@@ -21,22 +21,24 @@ namespace Lucrare_licenta.Pages.Vehicule
         }
 
         [BindProperty]
-        public Vehicul Vehicul { get; set; } = default!;
+        public Oferta Oferta { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Vehicul == null)
+            if (id == null || _context.Oferta == null)
             {
                 return NotFound();
             }
 
-            var vehicul =  await _context.Vehicul.FirstOrDefaultAsync(m => m.ID == id);
-            if (vehicul == null)
+            var oferta =  await _context.Oferta.FirstOrDefaultAsync(m => m.ID == id);
+            if (oferta == null)
             {
                 return NotFound();
             }
-            Vehicul = vehicul;
-           ViewData["OfertaID"] = new SelectList(_context.Oferta, "ID", "ID");
+            Oferta = oferta;
+           ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
+           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+           ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
             return Page();
         }
 
@@ -49,7 +51,7 @@ namespace Lucrare_licenta.Pages.Vehicule
                 return Page();
             }
 
-            _context.Attach(Vehicul).State = EntityState.Modified;
+            _context.Attach(Oferta).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +59,7 @@ namespace Lucrare_licenta.Pages.Vehicule
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehiculExists(Vehicul.ID))
+                if (!OfertaExists(Oferta.ID))
                 {
                     return NotFound();
                 }
@@ -70,9 +72,9 @@ namespace Lucrare_licenta.Pages.Vehicule
             return RedirectToPage("./Index");
         }
 
-        private bool VehiculExists(int id)
+        private bool OfertaExists(int id)
         {
-          return _context.Vehicul.Any(e => e.ID == id);
+          return _context.Oferta.Any(e => e.ID == id);
         }
     }
 }
