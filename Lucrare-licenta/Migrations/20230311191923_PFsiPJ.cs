@@ -4,7 +4,7 @@
 
 namespace Lucrare_licenta.Migrations
 {
-    public partial class PFsiPJactualizareindex : Migration
+    public partial class PFsiPJ : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

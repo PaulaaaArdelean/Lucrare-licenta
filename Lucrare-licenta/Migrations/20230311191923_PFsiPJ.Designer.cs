@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    [Migration("20230311190925_PFsiPJactualizareindex")]
-    partial class PFsiPJactualizareindex
+    [Migration("20230311191923_PFsiPJ")]
+    partial class PFsiPJ
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,7 +269,7 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.PersoanaFizica", b =>
                 {
                     b.HasOne("Lucrare_licenta.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("PersoaneFizice")
                         .HasForeignKey("ClientID");
 
                     b.Navigation("Client");
@@ -278,7 +278,7 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.PersoanaJuridica", b =>
                 {
                     b.HasOne("Lucrare_licenta.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("PersoaneJuridice")
                         .HasForeignKey("ClientID");
 
                     b.Navigation("Client");
@@ -302,6 +302,13 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.CategorieVehicul", b =>
                 {
                     b.Navigation("Vehicule");
+                });
+
+            modelBuilder.Entity("Lucrare_licenta.Models.Client", b =>
+                {
+                    b.Navigation("PersoaneFizice");
+
+                    b.Navigation("PersoaneJuridice");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.TipCombustibil", b =>

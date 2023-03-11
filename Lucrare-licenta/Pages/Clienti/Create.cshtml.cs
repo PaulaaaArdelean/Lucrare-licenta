@@ -21,7 +21,7 @@ namespace Lucrare_licenta.Pages.Clienti
 
         public IActionResult OnGet()
         {
-        ViewData["TipSocietateID"] = new SelectList(_context.Set<TipSocietate>(), "ID", "TipulSocietate");
+        ViewData["TipSocietateID"] = new SelectList(_context.TipSocietate, "ID", "TipulSocietate");
             return Page();
         }
 

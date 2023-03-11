@@ -126,5 +126,8 @@ namespace Lucrare_licenta.Models
         [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
         public string Telefon { get; set; }
 
+
+        public ICollection<PersoanaFizica>? PersoaneFizice { get; set; }
+        public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace Lucrare_licenta.Pages.Clienti
                 return NotFound();
             }
             Client = client;
-           ViewData["TipSocietateID"] = new SelectList(_context.Set<TipSocietate>(), "ID", "TipulSocietate");
+           ViewData["TipSocietateID"] = new SelectList(_context.TipSocietate, "ID", "TipulSocietate");
             return Page();
         }
 

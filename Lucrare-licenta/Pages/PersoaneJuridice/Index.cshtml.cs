@@ -26,7 +26,9 @@ namespace Lucrare_licenta.Pages.PersoaneJuridice
             if (_context.PersoanaJuridica != null)
             {
                 PersoanaJuridica = await _context.PersoanaJuridica
-                .Include(p => p.Client).ToListAsync();
+                .Include(p => p.Client)
+                .ThenInclude(p => p.TipSocietate)
+                .ToListAsync();
             }
         }
     }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    [Migration("20230311190731_PFsiPJ")]
-    partial class PFsiPJ
+    [Migration("20230311192702_PFsiPJactualizare")]
+    partial class PFsiPJactualizare
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -153,9 +153,14 @@ namespace Lucrare_licenta.Migrations
                     b.Property<int?>("ClientID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TipSocietateID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("ClientID");
+
+                    b.HasIndex("TipSocietateID");
 
                     b.ToTable("PersoanaJuridica");
                 });
@@ -269,7 +274,7 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.PersoanaFizica", b =>
                 {
                     b.HasOne("Lucrare_licenta.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("PersoaneFizice")
                         .HasForeignKey("ClientID");
 
                     b.Navigation("Client");
@@ -278,10 +283,16 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.PersoanaJuridica", b =>
                 {
                     b.HasOne("Lucrare_licenta.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("PersoaneJuridice")
                         .HasForeignKey("ClientID");
 
+                    b.HasOne("Lucrare_licenta.Models.TipSocietate", "TipSocietate")
+                        .WithMany("PersoaneJuridice")
+                        .HasForeignKey("TipSocietateID");
+
                     b.Navigation("Client");
+
+                    b.Navigation("TipSocietate");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Vehicul", b =>
@@ -304,6 +315,13 @@ namespace Lucrare_licenta.Migrations
                     b.Navigation("Vehicule");
                 });
 
+            modelBuilder.Entity("Lucrare_licenta.Models.Client", b =>
+                {
+                    b.Navigation("PersoaneFizice");
+
+                    b.Navigation("PersoaneJuridice");
+                });
+
             modelBuilder.Entity("Lucrare_licenta.Models.TipCombustibil", b =>
                 {
                     b.Navigation("Vehicule");
@@ -312,6 +330,8 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.TipSocietate", b =>
                 {
                     b.Navigation("Client");
+
+                    b.Navigation("PersoaneJuridice");
                 });
 #pragma warning restore 612, 618
         }

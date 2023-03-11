@@ -36,7 +36,7 @@ namespace Lucrare_licenta.Pages.PersoaneFizice
                 return NotFound();
             }
             PersoanaFizica = persoanafizica;
-           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "TipulSocietate");
+           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
             return Page();
         }
 

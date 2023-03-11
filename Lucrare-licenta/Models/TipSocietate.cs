@@ -11,5 +11,6 @@ namespace Lucrare_licenta.Models
 
         public string TipulSocietate { get; set; }
         public ICollection<Client>? Client { get; set; }
+        public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }
     }
 }
