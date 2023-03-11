@@ -1,0 +1,138 @@
+﻿@page
+@model Lucrare_licenta.Pages.Clienti.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].CNP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].NumeProprietar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].PrenumeProprietar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].SerieCI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].NumarCI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].CUI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].TipSocietate.TipulSocietate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].ActivitateSocietate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].NumeFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].NumeReprezentantFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].PrenumeReprezentantFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Judet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Localitate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Strada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Numar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].CodPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client[0].Telefon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Client) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeProprietar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrenumeProprietar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerieCI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumarCI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CUI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipSocietate.TipulSocietate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivitateSocietate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeReprezentantFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrenumeReprezentantFirma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Judet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localitate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

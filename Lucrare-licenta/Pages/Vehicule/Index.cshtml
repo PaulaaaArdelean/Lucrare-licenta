@@ -1,0 +1,102 @@
+﻿@page
+@model Lucrare_licenta.Pages.Vehicule.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].NumarIdentificare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].NrInmatriculare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].AnFabricatie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].CapacitateCilindrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].SerieCIV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].NrLocuri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].MasaMaxima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].Putere)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].CategorieVehicul.CategoriaVehicul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].TipCombustibil.TipulCombustibil)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vehicul) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumarIdentificare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrInmatriculare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnFabricatie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapacitateCilindrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerieCIV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrLocuri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasaMaxima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Putere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategorieVehicul.CategoriaVehicul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipCombustibil.TipulCombustibil)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

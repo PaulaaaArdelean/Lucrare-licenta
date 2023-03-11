@@ -1,0 +1,110 @@
+﻿@page
+@model Lucrare_licenta.Pages.PersoaneJuridice.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.CUI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.TipSocietate.TipulSocietate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.ActivitateSocietate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.NumeFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.NumeReprezentantFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.PrenumeReprezentantFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Judet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Localitate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Strada)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Numar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.CodPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Telefon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PersoanaJuridica) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.CUI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.TipSocietate.TipulSocietate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.ActivitateSocietate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.NumeFirma)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.NumeReprezentantFirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.PrenumeReprezentantFirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Judet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Localitate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Strada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Numar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.CodPostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Telefon)
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
