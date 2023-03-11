@@ -7,12 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Lucrare_licentaContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Lucrare_licentaContext") ?? throw new InvalidOperationException("Connection string 'Lucrare_licentaContext' not found.")));
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("Lucrare_licentaContext") ?? throw new InvalidOperationException("Connection string 'Lucrare_licentaContext' not found.")));
 builder.Services.AddDbContext<LibraryIdentityContext>(options =>
 
 options.UseSqlServer(builder.Configuration.GetConnectionString("Lucrare_licentaContext") ?? throw new InvalidOperationException("Connection string 'Lucrare_licentaContext' not found.")));
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<LibraryIdentityContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true)
+ .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
 
