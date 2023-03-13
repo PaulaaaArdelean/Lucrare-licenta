@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
@@ -28,6 +29,7 @@ namespace Lucrare_licenta.Pages.Oferte
 
         public async Task OnGetAsync(int? id, int? optionalID, string searchString)
         {
+
             OfertaD = new OfertaData();
 
             OfertaD.Oferte = await _context.Oferta

@@ -16,8 +16,6 @@ namespace Lucrare_licenta.Models
         [StringLength(30, MinimumLength = 3)]
         public string? NumeProprietar { get; set; }
 
-
-
         [Display(Name = "Prenumele")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Prenumele trebuie sa aiba minim 3 caractere, sa inceapa cu majuscula si poate contine doar litere")]
         [StringLength(30, MinimumLength = 3)]
@@ -126,6 +124,15 @@ namespace Lucrare_licenta.Models
         [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
         public string Telefon { get; set; }
 
+
+        [Display(Name = "Numele clientului")]
+        public string? NumeClientFirma
+        {
+            get
+            {
+                return NumeIntreg + " " + NumeFirma;
+            }
+        }
 
         public ICollection<PersoanaFizica>? PersoaneFizice { get; set; }
         public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }

@@ -21,7 +21,7 @@ namespace Lucrare_licenta.Pages.PersoaneFizice
 
         public IActionResult OnGet()
         {
-        ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+        ViewData["ClientID"] = new SelectList(_context.Client, "ID", "NumeIntreg");
             return Page();
         }
 

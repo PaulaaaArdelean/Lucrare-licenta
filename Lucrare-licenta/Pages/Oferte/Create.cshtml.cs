@@ -37,9 +37,9 @@ namespace Lucrare_licenta.Pages.Oferte
                     DetaliiClient = x.NumeIntreg + " " + x.NumeFirma
                 });
 
-            ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
-            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
-            ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
+            ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "CategoriaVehicul");
+            ViewData["ClientID"] = new SelectList(detaliiClient, "ID", "DetaliiClient");
+            ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "TipulCombustibil");
 
             var oferta = new Oferta();
             oferta.AtributeOptionaleOferta = new List<AtributOptionalOferta>();

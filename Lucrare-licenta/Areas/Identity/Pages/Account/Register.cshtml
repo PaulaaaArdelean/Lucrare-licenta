@@ -12,6 +12,69 @@
             <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4>Completati acest camp doar pentru persoana fizica! </h4>
+
+            <div class="form-floating">
+                <input asp-for="Input.CNP" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.CNP"></label>
+                <span asp-validation-for="Input.CNP" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.NumeProprietar" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.NumeProprietar"></label>
+                <span asp-validation-for="Input.NumeProprietar" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.PrenumeProprietar" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.PrenumeProprietar"></label>
+                <span asp-validation-for="Input.PrenumeProprietar" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.SerieCI" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.SerieCI"></label>
+                <span asp-validation-for="Input.SerieCI" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.NumarCI" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.NumarCI"></label>
+                <span asp-validation-for="Input.NumarCI" class="text-danger"></span>
+            </div>
+          
+            <h4>Completati acest camp doar pentru persoana juridica!</h4>
+            <div class="form-floating">
+                <input asp-for="Input.CUI" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.CUI"></label>
+                <span asp-validation-for="Input.CUI" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.TipSocietate" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.TipSocietate"></label>
+                <span asp-validation-for="Input.TipSocietate" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ActivitateSocietate" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.ActivitateSocietate"></label>
+                <span asp-validation-for="Input.ActivitateSocietate" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.NumeFirma" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.NumeFirma"></label>
+                <span asp-validation-for="Input.NumeFirma" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.NumeReprezentantFirma" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.NumeReprezentantFirma"></label>
+                <span asp-validation-for="Input.NumeReprezentantFirma" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.PrenumeReprezentantFirma" class="form-control" autocomplete="name" aria-required="true" />
+                <label asp-for="Input.PrenumeReprezentantFirma"></label>
+                <span asp-validation-for="Input.PrenumeReprezentantFirma" class="text-danger"></span>
+            </div>
+
+     
+            <h4>Adresa! </h4>
+            
             <div class="form-floating">
                 <input asp-for="Input.Judet" class="form-control" autocomplete="name" aria-required="true" />
                 <label asp-for="Input.Judet"></label>
@@ -62,17 +125,11 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h3>Use another service to register.</h3>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
+                    
                 }
                 else
                 {

@@ -21,7 +21,7 @@ namespace Lucrare_licenta.Pages.Vehicule
 
         public IActionResult OnGet()
         {
-        ViewData["OfertaID"] = new SelectList(_context.Oferta, "ID", "ID");
+        ViewData["OfertaID"] = new SelectList(_context.Oferta, "ID", "NrInmatriculare");
             return Page();
         }
 

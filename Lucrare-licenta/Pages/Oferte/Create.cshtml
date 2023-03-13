@@ -15,7 +15,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Oferta.ClientID" class="control-label"></label>
+                <label asp-for="Oferta.ClientID" class="control-label">Proprietar</label>
                 <select asp-for="Oferta.ClientID" class ="form-control" asp-items="ViewBag.ClientID"></select>
             </div>
             <div class="form-group">
@@ -69,11 +69,11 @@
                 <span asp-validation-for="Oferta.Putere" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Oferta.CategorieVehiculID" class="control-label"></label>
+                <label asp-for="Oferta.CategorieVehiculID" class="control-label">Categoria</label>
                 <select asp-for="Oferta.CategorieVehiculID" class ="form-control" asp-items="ViewBag.CategorieVehiculID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Oferta.TipCombustibilID" class="control-label"></label>
+                <label asp-for="Oferta.TipCombustibilID" class="control-label">Tipul de combustibil</label>
                 <select asp-for="Oferta.TipCombustibilID" class ="form-control" asp-items="ViewBag.TipCombustibilID"></select>
             </div>
             <div class="form-group">
@@ -94,7 +94,7 @@
  value="@cat.OptionalID"
  @(Html.Raw(cat.Assigned ? 
 "checked=\"checked\"" : "")) />
- @cat.OptionalID @: @cat.AtributOptional
+ @cat.AtributOptional
  @:</td>
  }
  @:</tr>

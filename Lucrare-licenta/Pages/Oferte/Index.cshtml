@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Oferta[0].Client)
+                @Html.DisplayNameFor(model => model.Oferta[0].Client.NumeClientFirma)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Oferta[0].NumarIdentificare)
@@ -48,10 +48,10 @@
                 @Html.DisplayNameFor(model => model.Oferta[0].Putere)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Oferta[0].CategorieVehicul)
+                @Html.DisplayNameFor(model => model.Oferta[0].CategorieVehicul.CategoriaVehicul)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Oferta[0].TipCombustibil)
+                @Html.DisplayNameFor(model => model.Oferta[0].TipCombustibil.TipulCombustibil)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Oferta[0].AtributeOptionaleOferta)
@@ -69,7 +69,7 @@
             }
             <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.Client.ID)
+                @Html.DisplayFor(modelItem => item.Client.NumeClientFirma)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumarIdentificare)
@@ -102,10 +102,10 @@
                 @Html.DisplayFor(modelItem => item.Putere)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CategorieVehicul.ID)
+                @Html.DisplayFor(modelItem => item.CategorieVehicul.CategoriaVehicul)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipCombustibil.ID)
+                @Html.DisplayFor(modelItem => item.TipCombustibil.TipulCombustibil)
             </td>
                 <td>
                     @{

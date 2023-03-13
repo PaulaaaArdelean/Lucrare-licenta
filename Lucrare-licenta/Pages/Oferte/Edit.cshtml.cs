@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
     public class EditModel : OferteOptionalPageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public EditModel(Lucrare_licenta.Data.Lucrare_licentaContext context)
+        public EditModel(Lucrare_licenta.Data.Lucrare_licentaContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         [BindProperty]
@@ -42,10 +46,19 @@ namespace Lucrare_licenta.Pages.Oferte
             }
 
             PopulateAssignedOptionalData(_context, Oferta);
+         
+            var userName = _userManager.GetUserName(User);
 
-           ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
-           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
-           ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
+            var detaliiClient = _context.Client
+                .Where(c => c.Email == userName)
+                .Select(x => new
+                {
+                    x.ID,
+                    DetaliiClient = x.NumeIntreg + " " + x.NumeFirma
+                });
+            ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "CategoriaVehicul");
+           ViewData["ClientID"] = new SelectList(detaliiClient, "ID", "DetaliiClient");
+           ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "TipulCombustibil");
             return Page();
         }
 
