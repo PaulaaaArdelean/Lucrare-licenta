@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
-    public class CreateModel : PageModel
+    public class CreateModel : OferteOptionalPageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;
         private readonly UserManager<IdentityUser> _userManager;
@@ -33,31 +34,47 @@ namespace Lucrare_licenta.Pages.Oferte
                 .Select(x => new
                 {
                     x.ID,
-                    DetaliiClient = x.NumeIntreg+" " +x.NumeFirma
+                    DetaliiClient = x.NumeIntreg + " " + x.NumeFirma
                 });
 
-        ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
-        ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
-        ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
+            ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
+            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+            ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
+
+            var oferta = new Oferta();
+            oferta.AtributeOptionaleOferta = new List<AtributOptionalOferta>();
+            PopulateAssignedOptionalData(_context, oferta);
             return Page();
         }
 
         [BindProperty]
         public Oferta Oferta { get; set; }
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedAttributes)
         {
-          if (!ModelState.IsValid)
+            var newOferta = new Oferta();
+            if (selectedAttributes != null)
             {
-                return Page();
+                newOferta.AtributeOptionaleOferta = new List<AtributOptionalOferta>();
+                foreach (var cat in selectedAttributes)
+                {
+                    var catToAdd = new AtributOptionalOferta
+                    {
+                        AtributOptionalID = int.Parse(cat)
+                    };
+                    newOferta.AtributeOptionaleOferta.Add(catToAdd);
+                }
             }
-
+            Oferta.AtributeOptionaleOferta = newOferta.AtributeOptionaleOferta;
             _context.Oferta.Add(Oferta);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
+
+            PopulateAssignedOptionalData(_context, newOferta);
+            return Page();
         }
+
     }
 }

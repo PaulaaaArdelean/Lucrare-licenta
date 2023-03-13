@@ -27,6 +27,26 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
+                
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" />
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                            Liste
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>   <a class="nav-link text-dark" asp-area="" asp-page="/Clienti/Index"><i class="bi bi-people-fill"></i> Clienti</a>   </li>
+                            <li>  <a class="nav-link text-dark" asp-area="" asp-page="/Vehicule/Index"><i class="bi bi-car-front-fill"></i> Vehicule</a>  </li>
+                            <li>  <a class="nav-link text-dark" asp-area="" asp-page="/PersoaneFizice/Index"><i class="bi bi-people-fill"></i>Persoane fizice</a></li>
+                            <li>  <a class="nav-link text-dark" asp-area="" asp-page="/PersoaneJuridice/Index"><i class="bi bi-people-fill"></i> Persoane juridice </a></li>
+                            <li>  <a class="nav-link text-dark" asp-area="" asp-page="/Oferte/Index"><i class="bi bi-coin"></i> Oferte </a></li>
+
+            </div>
+
+
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
@@ -44,8 +64,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/TipuriSocietate/Index"><i class="bi bi-bank2"></i> Tipuri societati</a>
                         </li>
-                     
-
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/AtributeOptionale/Index"><i class="bi bi-bank2"></i> Atribute optionale</a>
+                    </li>
+                      
+                     <!--  ASTA ADAUG DUPA CE ADAUG ROLURILE 
                         <li>
                             @if(User.Identity.IsAuthenticated)
                             {
@@ -61,26 +84,19 @@
                                 }
                             }
                         </li>
+                      -->
 
+
+                            <!--   AICI DUPA CE ADAUG ROLURILE TREBUIE SA VAD CUM MA DESCURC SA PUN RESTRICTIE LA BUTONUL CU DROPDOWN DE LISTE SA FIE VIZIBIL PT ADMIN
+
+                
+                            -->
+                </ul>
                     <partial name="_LoginPartial" />   
-                    </ul>
+                    
                 </div>
-<!--    drop down item  
-                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" />
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i>
-                            Profil
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" asp-area="" asp-page="/PersoaneFizice/Index"><i class="bi bi-person-circle"></i> Date Personale PF </a></li>
-                            <li>
-                                <a class="dropdown-item" asp-area="" asp-page="/PersoaneJuridice/Index"><i class="bi bi-person-circle"></i> Date perosnale PJ </a>
-                            </li>
-            </div>
--->
-
+   </div>
+     
         </nav>
     </header>
     <div class="container">

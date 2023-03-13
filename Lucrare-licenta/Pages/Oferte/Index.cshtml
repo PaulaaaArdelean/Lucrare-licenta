@@ -53,12 +53,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.Oferta[0].TipCombustibil)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oferta[0].AtributeOptionaleOferta)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Oferta) {
-        <tr>
+        @foreach (var item in Model.OfertaD.Oferte)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.OfertaID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.Client.ID)
             </td>
@@ -98,6 +107,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TipCombustibil.ID)
             </td>
+                <td>
+                    @{
+                        foreach (var category in item.AtributeOptionaleOferta)
+                        {
+                            @category.AtributOptional.ID @: @category.AtributOptional.AtributulOptional <br />
+                        }
+                    }
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

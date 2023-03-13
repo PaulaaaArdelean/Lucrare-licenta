@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
+using System.Net;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
@@ -19,17 +20,34 @@ namespace Lucrare_licenta.Pages.Oferte
             _context = context;
         }
 
-        public IList<Oferta> Oferta { get;set; } = default!;
+        public IList<Oferta> Oferta { get; set; } = default!;
+        public OfertaData OfertaD { get; set; }
+        public int OfertaID { get; set; }
+        public int OptionalID { get; set; }
+        public String CurrentFilter { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id, int? optionalID, string searchString)
         {
-            if (_context.Oferta != null)
+            OfertaD = new OfertaData();
+
+            OfertaD.Oferte = await _context.Oferta
+            .Include(b => b.Client)
+            .Include(b=>b.TipCombustibil)
+            .Include(b=>b.CategorieVehicul)
+
+            .Include(b => b.AtributeOptionaleOferta)
+            .ThenInclude(b => b.AtributOptional)
+            .AsNoTracking()
+            // .OrderBy(b => b.N)
+            .ToListAsync();
+            if (id != null)
             {
-                Oferta = await _context.Oferta
-                .Include(o => o.CategorieVehicul)
-                .Include(o => o.Client)
-                .Include(o => o.TipCombustibil).ToListAsync();
+                OfertaID = id.Value;
+                Oferta oferta = OfertaD.Oferte
+                .Where(i => i.ID == id.Value).Single();
+                OfertaD.AtributeOptionale = oferta.AtributeOptionaleOferta.Select(s => s.AtributOptional);
             }
         }
     }
 }
+

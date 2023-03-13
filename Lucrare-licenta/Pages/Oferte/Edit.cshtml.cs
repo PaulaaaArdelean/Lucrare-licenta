@@ -11,7 +11,7 @@ using Lucrare_licenta.Models;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
-    public class EditModel : PageModel
+    public class EditModel : OferteOptionalPageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;
 
@@ -30,12 +30,19 @@ namespace Lucrare_licenta.Pages.Oferte
                 return NotFound();
             }
 
-            var oferta =  await _context.Oferta.FirstOrDefaultAsync(m => m.ID == id);
-            if (oferta == null)
+            Oferta = await _context.Oferta
+  .Include(b => b.Client)
+  .Include(b => b.AtributeOptionaleOferta).ThenInclude(b => b.AtributOptional)
+  .AsNoTracking()
+  .FirstOrDefaultAsync(m => m.ID == id);
+
+            if (Oferta == null)
             {
                 return NotFound();
             }
-            Oferta = oferta;
+
+            PopulateAssignedOptionalData(_context, Oferta);
+
            ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "ID");
            ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
            ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "ID");
@@ -44,37 +51,44 @@ namespace Lucrare_licenta.Pages.Oferte
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id, string[] selectedAttributes)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
-
-            _context.Attach(Oferta).State = EntityState.Modified;
-
-            try
+            //se va include Author conform cu sarcina de la lab 2
+            var ofertaToUpdate = await _context.Oferta
+            .Include(i => i.Client)
+            .Include(i => i.AtributeOptionaleOferta)
+            .ThenInclude(i => i.AtributOptional)
+            .FirstOrDefaultAsync(s => s.ID == id);
+            if (ofertaToUpdate == null)
             {
+                return NotFound();
+            }
+            //se va modifica AuthorID conform cu sarcina de la lab 2
+            if (await TryUpdateModelAsync<Oferta>(
+            ofertaToUpdate,
+            "Oferta",
+            i => i.ClientID, i => i.NumarIdentificare,
+            i => i.NrInmatriculare, i => i.Marca, i => i.Model, i => i.AnFabricatie,
+            i => i.CapacitateCilindrica,i => i.SerieCIV,
+             i => i.NrLocuri, i => i.MasaMaxima, i => i.Putere,
+              i => i.CategorieVehiculID, i => i.TipCombustibilID))
+            {
+                UpdateAtributeOptionaleOferta(_context, selectedAttributes, ofertaToUpdate);
                 await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OfertaExists(Oferta.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool OfertaExists(int id)
-        {
-          return _context.Oferta.Any(e => e.ID == id);
+            //Apelam UpdateBookCategories pentru a aplica informatiile din checkboxuri la entitatea Books care 
+            //este editata 
+            UpdateAtributeOptionaleOferta(_context, selectedAttributes, ofertaToUpdate);
+            PopulateAssignedOptionalData(_context, ofertaToUpdate);
+            return Page();
         }
     }
+
 }
+
+

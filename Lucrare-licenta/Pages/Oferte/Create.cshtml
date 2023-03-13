@@ -77,6 +77,32 @@
                 <select asp-for="Oferta.TipCombustibilID" class ="form-control" asp-items="ViewBag.TipCombustibilID"></select>
             </div>
             <div class="form-group">
+ <div class="table">
+ <table>
+ <tr>
+ @{
+ int cnt = 0;
+ foreach (var cat in Model.AssignedOptionalDataList)
+ {
+ if (cnt++ % 3 == 0)
+{
+@:</tr><tr>
+ }
+ @:<td>
+ <input type="checkbox"
+ name="selectedAttributes"
+ value="@cat.OptionalID"
+ @(Html.Raw(cat.Assigned ? 
+"checked=\"checked\"" : "")) />
+ @cat.OptionalID @: @cat.AtributOptional
+ @:</td>
+ }
+ @:</tr>
+ }
+ </table>
+ </div>
+ </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
