@@ -29,13 +29,14 @@ namespace Lucrare_licenta.Pages.Oferte
 
         public async Task OnGetAsync(int? id, int? optionalID, string searchString)
         {
+            CurrentFilter = searchString;
 
             OfertaD = new OfertaData();
 
             OfertaD.Oferte = await _context.Oferta
             .Include(b => b.Client)
-            .Include(b=>b.TipCombustibil)
-            .Include(b=>b.CategorieVehicul)
+            .Include(b => b.TipCombustibil)
+            .Include(b => b.CategorieVehicul)
 
             .Include(b => b.AtributeOptionaleOferta)
             .ThenInclude(b => b.AtributOptional)
@@ -48,6 +49,18 @@ namespace Lucrare_licenta.Pages.Oferte
                 Oferta oferta = OfertaD.Oferte
                 .Where(i => i.ID == id.Value).Single();
                 OfertaD.AtributeOptionale = oferta.AtributeOptionaleOferta.Select(s => s.AtributOptional);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                OfertaD.Oferte = OfertaD.Oferte.Where(s => s.Client.NumeFirma.Contains(searchString)
+               //|| s.NrInmatriculare.Contains(searchString)
+               || s.Client.CUI.Contains(searchString)
+               || s.Client.CNP.Contains(searchString)
+               //|| s.AnFabricatie.Contains(searchString)
+               //|| s.NumarIdentificare.Contains(searchString)
+               || s.Client.NumeIntregReprezentant.Contains(searchString)
+               || s.Client.NumeIntreg.Contains(searchString));
             }
         }
     }

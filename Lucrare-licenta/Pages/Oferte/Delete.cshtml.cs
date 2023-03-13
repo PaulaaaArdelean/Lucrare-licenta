@@ -34,7 +34,11 @@ namespace Lucrare_licenta.Pages.Oferte
                 return NotFound();
             }
 
-            var oferta = await _context.Oferta.FirstOrDefaultAsync(m => m.ID == id);
+            var oferta = await _context.Oferta
+                 .Include(c => c.Client)
+                .Include(c => c.TipCombustibil)
+                .Include(c => c.CategorieVehicul)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (oferta == null)
             {

@@ -46,6 +46,8 @@ namespace Lucrare_licenta.Models
         public int? TipCombustibilID { get; set; }
         [Display(Name = "Tipul de combustibil")]
         public TipCombustibil? TipCombustibil { get; set; }
+        [Display(Name = "Optional")]
+
         public ICollection<AtributOptionalOferta>? AtributeOptionaleOferta { get; set; }
     }
 }
