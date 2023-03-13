@@ -54,11 +54,11 @@ namespace Lucrare_licenta.Pages.Oferte
             if (!String.IsNullOrEmpty(searchString))
             {
                 OfertaD.Oferte = OfertaD.Oferte.Where(s => s.Client.NumeFirma.Contains(searchString)
-               //|| s.NrInmatriculare.Contains(searchString)
+               || s.NrInmatriculare.Contains(searchString)
                || s.Client.CUI.Contains(searchString)
                || s.Client.CNP.Contains(searchString)
-               //|| s.AnFabricatie.Contains(searchString)
-               //|| s.NumarIdentificare.Contains(searchString)
+               || s.AnFabricatie.Contains(searchString)
+               || s.NumarIdentificare.Contains(searchString)
                || s.Client.NumeIntregReprezentant.Contains(searchString)
                || s.Client.NumeIntreg.Contains(searchString));
             }

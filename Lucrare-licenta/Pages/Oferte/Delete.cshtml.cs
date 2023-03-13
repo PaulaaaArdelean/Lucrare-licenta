@@ -25,10 +25,7 @@ namespace Lucrare_licenta.Pages.Oferte
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            //ViewData["CategorieVehiculID"] = new SelectList(_context.CategorieVehicul, "ID", "CategoriaVehicul");
-            //ViewData["ClientID"] = new SelectList(_context.Client, "ID", "NumeClientFirma");
-            //ViewData["TipCombustibilID"] = new SelectList(_context.TipCombustibil, "ID", "TipulCombustibil");
-            
+           
             if (id == null || _context.Oferta == null)
             {
                 return NotFound();
