@@ -54,6 +54,7 @@ namespace Lucrare_licenta.Pages.Oferte
                || s.NrInmatriculare.Contains(searchString)
                || s.NumarIdentificare.Contains(searchString)
                || s.Marca.Contains(searchString)
+               || s.CategorieVehicul.CategoriaVehicul.Contains(searchString)
                ||s.TipCombustibil.TipulCombustibil.Contains(searchString)
                || s.SerieCIV.Contains(searchString)
                || s.AnFabricatie.Contains(searchString)
