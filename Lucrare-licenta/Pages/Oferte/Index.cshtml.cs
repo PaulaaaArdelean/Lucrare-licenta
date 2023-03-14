@@ -43,7 +43,28 @@ namespace Lucrare_licenta.Pages.Oferte
             .AsNoTracking()
             // .OrderBy(b => b.N)
             .ToListAsync();
-            if (id != null)
+
+
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                OfertaD.Oferte = OfertaD.Oferte.Where(s => s.Client.NumeClientFirma.Contains(searchString)
+
+               || s.NrInmatriculare.Contains(searchString)
+               || s.NumarIdentificare.Contains(searchString)
+               || s.Marca.Contains(searchString)
+               ||s.TipCombustibil.TipulCombustibil.Contains(searchString)
+               || s.SerieCIV.Contains(searchString)
+               || s.AnFabricatie.Contains(searchString)
+               || s.Model.Contains(searchString)
+               || s.NumarIdentificare.Contains(searchString));
+
+
+            }
+            
+
+                if (id != null)
             {
                 OfertaID = id.Value;
                 Oferta oferta = OfertaD.Oferte
@@ -51,19 +72,9 @@ namespace Lucrare_licenta.Pages.Oferte
                 OfertaD.AtributeOptionale = oferta.AtributeOptionaleOferta.Select(s => s.AtributOptional);
             }
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                OfertaD.Oferte = OfertaD.Oferte.Where(s => s.Client.NumeFirma.Contains(searchString)
-               || s.Client.CUI.Contains(searchString)
-               || s.Client.CNP.Contains(searchString)
-               || s.Client.NumeIntregReprezentant.Contains(searchString)
-               || s.Client.NumeIntreg.Contains(searchString)
-               || s.NrInmatriculare.Contains(searchString)
-               || s.AnFabricatie.Contains(searchString)
-               || s.NumarIdentificare.Contains(searchString)
-            );
+        
             }
         }
-    }
+    
 }
 

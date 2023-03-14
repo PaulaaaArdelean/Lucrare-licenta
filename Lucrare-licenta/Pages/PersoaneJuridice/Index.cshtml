@@ -100,9 +100,9 @@
                     @Html.DisplayFor(modelItem => item.Client.Telefon)
                 </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square"></i>Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-file-earmark-bar-graph"></i>Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash-fill"></i>Delete</a>
             </td>
         </tr>
 }
