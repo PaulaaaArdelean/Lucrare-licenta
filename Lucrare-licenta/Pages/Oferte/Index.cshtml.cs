@@ -29,6 +29,14 @@ namespace Lucrare_licenta.Pages.Oferte
 
         public async Task OnGetAsync(int? id, int? optionalID, string searchString)
         {
+
+
+            var anFabricatie = _context.Oferta.Select(x => new {x.ID, anulFabricatiei = x.AnFabricatie});
+            var capacitateCilindrica = _context.Oferta.Select(x => new { x.ID, capacitateaCilindrica = x.CapacitateCilindrica });
+
+
+                //var pret = anFabricatie * 0.2 + capacitateCilindrica * 0.8 ;
+
             CurrentFilter = searchString;
 
             OfertaD = new OfertaData();

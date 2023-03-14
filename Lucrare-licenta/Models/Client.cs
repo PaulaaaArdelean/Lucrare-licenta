@@ -44,7 +44,7 @@ namespace Lucrare_licenta.Models
         public string? NumarCI { get; set; }
 
 
-
+        public string? Varsta { get; set; }
 
 
 
