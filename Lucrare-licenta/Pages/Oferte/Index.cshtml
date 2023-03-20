@@ -6,17 +6,15 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Oferte RCA</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
             Cautati o oferta:
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <input type="submit" value="Search" class="btn btn-primary" style= "background-color:black"/> |
             <a asp-page="./Index">Back to full List</a>
         </p>
     </div>
@@ -65,8 +63,12 @@
                 @Html.DisplayNameFor(model => model.Oferta[0].TipCombustibil.TipulCombustibil)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Oferta[0].Pret)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Oferta[0].AtributeOptionaleOferta)
             </th>
+          
             <th></th>
         </tr>
     </thead>
@@ -119,6 +121,9 @@
                 @Html.DisplayFor(modelItem => item.TipCombustibil.TipulCombustibil)
             </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Pret)
+                </td>
+                <td>
                     @{
                         foreach (var category in item.AtributeOptionaleOferta)
                         {
@@ -129,7 +134,7 @@
             <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID"><i class="bi bi-pencil-square"></i>Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.ID"><i class="bi bi-file-earmark-bar-graph"></i>Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash-fill"></i>Delete</a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID"><i class="bi bi-trash-fill", style="color:red"></i>Delete</a>
             </td>
         </tr>
 }

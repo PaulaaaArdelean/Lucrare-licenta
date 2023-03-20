@@ -233,8 +233,8 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
             Client.NumeFirma = Input.NumeFirma;
             Client.NumeReprezentantFirma = Input.NumeReprezentantFirma;
             Client.PrenumeReprezentantFirma = Input.PrenumeReprezentantFirma;
-            Client.Judet = Input.Judet;
-            Client.Localitate = Input.Localitate;
+           // Client.Judet = Select.Judet;
+            //Client.Localitate = Input.Localitate;
             Client.Strada = Input.Strada;
             Client.Numar = Input.Numar;
             Client.CodPostal = Input.CodPostal;
@@ -262,9 +262,9 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
                    returnUrl = returnUrl
                },
                 protocol: Request.Scheme);
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm  your email",
+                await _emailSender.SendEmailAsync(Input.Email, "Confirm  the email",
                
-                $"Please confirm your account by <a href = '{HtmlEncoder.Default.Encode(callbackUrl)}' > clicking here </ a >.");
+                $"Please confirm the account by <a href = '{HtmlEncoder.Default.Encode(callbackUrl)}' > clicking here </ a >.");
            
 
 

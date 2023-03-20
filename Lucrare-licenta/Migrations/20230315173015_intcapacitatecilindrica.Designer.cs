@@ -4,6 +4,7 @@ using Lucrare_licenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    partial class Lucrare_licentaContextModelSnapshot : ModelSnapshot
+    [Migration("20230315173015_intcapacitatecilindrica")]
+    partial class intcapacitatecilindrica
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.15")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -103,13 +105,15 @@ namespace Lucrare_licenta.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<string>("Judet")
+                        .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<string>("Localitate")
+                        .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Numar")
                         .IsRequired()
@@ -150,9 +154,6 @@ namespace Lucrare_licenta.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TipAsiguratID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TipSocietateID")
                         .HasColumnType("int");
 
@@ -161,54 +162,9 @@ namespace Lucrare_licenta.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
-
-                    b.HasIndex("TipAsiguratID");
-
                     b.HasIndex("TipSocietateID");
 
                     b.ToTable("Client");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.Judet", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Judetul")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Judet");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.Localitate", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Localitatea")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("JudetID");
-
-                    b.ToTable("Localitate");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Oferta", b =>
@@ -255,9 +211,6 @@ namespace Lucrare_licenta.Migrations
                     b.Property<string>("NumarIdentificare")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Pret")
-                        .HasColumnType("int");
 
                     b.Property<string>("Putere")
                         .IsRequired()
@@ -320,23 +273,6 @@ namespace Lucrare_licenta.Migrations
                     b.HasIndex("TipSocietateID");
 
                     b.ToTable("PersoanaJuridica");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.TipAsigurat", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("TipulAsigurat")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("TipAsigurat");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.TipCombustibil", b =>
@@ -422,38 +358,11 @@ namespace Lucrare_licenta.Migrations
 
             modelBuilder.Entity("Lucrare_licenta.Models.Client", b =>
                 {
-                    b.HasOne("Lucrare_licenta.Models.Judet", "Judet")
-                        .WithMany("Clienti")
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Lucrare_licenta.Models.Localitate", "Localitate")
-                        .WithMany("Clienti")
-                        .HasForeignKey("LocalitateID");
-
-                    b.HasOne("Lucrare_licenta.Models.TipAsigurat", "TipAsigurat")
-                        .WithMany("Clienti")
-                        .HasForeignKey("TipAsiguratID");
-
                     b.HasOne("Lucrare_licenta.Models.TipSocietate", "TipSocietate")
-                        .WithMany("Clienti")
+                        .WithMany("Client")
                         .HasForeignKey("TipSocietateID");
 
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
-
-                    b.Navigation("TipAsigurat");
-
                     b.Navigation("TipSocietate");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.Localitate", b =>
-                {
-                    b.HasOne("Lucrare_licenta.Models.Judet", "Judet")
-                        .WithMany("Localitati")
-                        .HasForeignKey("JudetID");
-
-                    b.Navigation("Judet");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Oferta", b =>
@@ -537,26 +446,9 @@ namespace Lucrare_licenta.Migrations
                     b.Navigation("PersoaneJuridice");
                 });
 
-            modelBuilder.Entity("Lucrare_licenta.Models.Judet", b =>
-                {
-                    b.Navigation("Clienti");
-
-                    b.Navigation("Localitati");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.Localitate", b =>
-                {
-                    b.Navigation("Clienti");
-                });
-
             modelBuilder.Entity("Lucrare_licenta.Models.Oferta", b =>
                 {
                     b.Navigation("AtributeOptionaleOferta");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.TipAsigurat", b =>
-                {
-                    b.Navigation("Clienti");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.TipCombustibil", b =>
@@ -568,7 +460,7 @@ namespace Lucrare_licenta.Migrations
 
             modelBuilder.Entity("Lucrare_licenta.Models.TipSocietate", b =>
                 {
-                    b.Navigation("Clienti");
+                    b.Navigation("Client");
 
                     b.Navigation("PersoaneJuridice");
                 });

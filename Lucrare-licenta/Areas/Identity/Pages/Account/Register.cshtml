@@ -4,15 +4,20 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Inregistrare!</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
+        
+            <h2>Creati un cont nou</h2>
+           
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h4>Completati acest camp doar pentru persoana fizica! </h4>
+            <div style=" border: 3px solid #C47777;float:left; width:32%">
+
+
+            <h4>Completati doar pentru <b> persoana fizica</b>! </h4>
 
             <div class="form-floating">
                 <input asp-for="Input.CNP" class="form-control" autocomplete="name" aria-required="true" />
@@ -39,8 +44,10 @@
                 <label asp-for="Input.NumarCI"></label>
                 <span asp-validation-for="Input.NumarCI" class="text-danger"></span>
             </div>
-          
-            <h4>Completati acest camp doar pentru persoana juridica!</h4>
+            </div>
+            <div style=" border: 3px solid #C47777;float:left; width:32%">
+
+                <h4>Completati doar pentru <b>persoana juridica</b> !</h4>
             <div class="form-floating">
                 <input asp-for="Input.CUI" class="form-control" autocomplete="name" aria-required="true" />
                 <label asp-for="Input.CUI"></label>
@@ -56,6 +63,7 @@
                 <label asp-for="Input.ActivitateSocietate"></label>
                 <span asp-validation-for="Input.ActivitateSocietate" class="text-danger"></span>
             </div>
+
             <div class="form-floating">
                 <input asp-for="Input.NumeFirma" class="form-control" autocomplete="name" aria-required="true" />
                 <label asp-for="Input.NumeFirma"></label>
@@ -72,8 +80,9 @@
                 <span asp-validation-for="Input.PrenumeReprezentantFirma" class="text-danger"></span>
             </div>
 
-     
-            <h4>Adresa! </h4>
+     </div>
+            <div style=" border: 3px solid #C47777; float:left; width:32%">
+                <h4>Adresa! </h4>
             
             <div class="form-floating">
                 <input asp-for="Input.Judet" class="form-control" autocomplete="name" aria-required="true" />
@@ -120,7 +129,8 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary" style="background-color:black">Register</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">

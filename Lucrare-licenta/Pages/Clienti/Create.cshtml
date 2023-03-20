@@ -14,6 +14,10 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Client.TipAsiguratID" class="control-label"></label>
+                    <select asp-for="Client.TipAsiguratID" class="form-control" asp-items="ViewBag.TipAsiguratID"></select>
+                </div>
                 <label asp-for="Client.CNP" class="control-label"></label>
                 <input asp-for="Client.CNP" class="form-control" />
                 <span asp-validation-for="Client.CNP" class="text-danger"></span>
@@ -73,14 +77,12 @@
                 <span asp-validation-for="Client.PrenumeReprezentantFirma" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Judet" class="control-label"></label>
-                <input asp-for="Client.Judet" class="form-control" />
-                <span asp-validation-for="Client.Judet" class="text-danger"></span>
+                <label asp-for="Client.JudetID" class="control-label"></label>
+                <select asp-for="Client.JudetID" class="form-control" asp-items="ViewBag.JudetID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Localitate" class="control-label"></label>
-                <input asp-for="Client.Localitate" class="form-control" />
-                <span asp-validation-for="Client.Localitate" class="text-danger"></span>
+                <label asp-for="Client.LocalitateID" class="control-label"></label>
+                <select asp-for="Client.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Client.Strada" class="control-label"></label>

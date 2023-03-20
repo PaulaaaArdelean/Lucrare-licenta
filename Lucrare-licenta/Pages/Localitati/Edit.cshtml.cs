@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 
-namespace Lucrare_licenta.Pages.Clienti
+namespace Lucrare_licenta.Pages.Localitati
 {
     public class EditModel : PageModel
     {
@@ -21,27 +21,22 @@ namespace Lucrare_licenta.Pages.Clienti
         }
 
         [BindProperty]
-        public Client Client { get; set; } = default!;
+        public Localitate Localitate { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Client == null)
+            if (id == null || _context.Localitate == null)
             {
                 return NotFound();
             }
 
-            var client =  await _context.Client
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (client == null)
+            var localitate =  await _context.Localitate.FirstOrDefaultAsync(m => m.ID == id);
+            if (localitate == null)
             {
                 return NotFound();
             }
-            Client = client;
-           ViewData["TipSocietateID"] = new SelectList(_context.TipSocietate, "ID", "TipulSocietate");
-            ViewData["TipAsiguratID"] = new SelectList(_context.TipAsigurat, "ID", "TipulAsigurat");
-            ViewData["JudetID"] = new SelectList(_context.Judet, "ID", "Judetul");
-            ViewData["LocalitateID"] = new SelectList(_context.Localitate, "ID", "Localitatea");
-
+            Localitate = localitate;
+           ViewData["JudetID"] = new SelectList(_context.Judet, "ID", "Judetul");
             return Page();
         }
 
@@ -54,7 +49,7 @@ namespace Lucrare_licenta.Pages.Clienti
                 return Page();
             }
 
-            _context.Attach(Client).State = EntityState.Modified;
+            _context.Attach(Localitate).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +57,7 @@ namespace Lucrare_licenta.Pages.Clienti
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClientExists(Client.ID))
+                if (!LocalitateExists(Localitate.ID))
                 {
                     return NotFound();
                 }
@@ -75,9 +70,9 @@ namespace Lucrare_licenta.Pages.Clienti
             return RedirectToPage("./Index");
         }
 
-        private bool ClientExists(int id)
+        private bool LocalitateExists(int id)
         {
-          return _context.Client.Any(e => e.ID == id);
+          return _context.Localitate.Any(e => e.ID == id);
         }
     }
 }

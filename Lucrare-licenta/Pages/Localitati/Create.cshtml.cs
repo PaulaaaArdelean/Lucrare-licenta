@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 
-namespace Lucrare_licenta.Pages.Clienti
+namespace Lucrare_licenta.Pages.Localitati
 {
     public class CreateModel : PageModel
     {
@@ -21,17 +21,12 @@ namespace Lucrare_licenta.Pages.Clienti
 
         public IActionResult OnGet()
         {
-        ViewData["TipSocietateID"] = new SelectList(_context.TipSocietate, "ID", "TipulSocietate");
-        ViewData["TipAsiguratID"] = new SelectList(_context.TipAsigurat, "ID", "TipulAsigurat");
         ViewData["JudetID"] = new SelectList(_context.Judet, "ID", "Judetul");
-        ViewData["LocalitateID"] = new SelectList(_context.Localitate, "ID", "Localitatea");
-
-
             return Page();
         }
 
         [BindProperty]
-        public Client Client { get; set; }
+        public Localitate Localitate { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -42,7 +37,7 @@ namespace Lucrare_licenta.Pages.Clienti
                 return Page();
             }
 
-            _context.Client.Add(Client);
+            _context.Localitate.Add(Localitate);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

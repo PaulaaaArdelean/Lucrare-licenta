@@ -7,13 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
-namespace Lucrare_licenta.Pages.Clienti
+namespace Lucrare_licenta.Pages.Localitati
 {
-    [Authorize(Roles = "Admin")]
-
     public class IndexModel : PageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;
@@ -23,19 +19,14 @@ namespace Lucrare_licenta.Pages.Clienti
             _context = context;
         }
 
-        public IList<Client> Client { get;set; } = default!;
+        public IList<Localitate> Localitate { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Client != null)
+            if (_context.Localitate != null)
             {
-                Client = await _context.Client
-                .Include(c => c.TipSocietate)
-                .Include(c => c.TipAsigurat)
-                  .Include(c => c.Localitate)
-                     .ThenInclude(c => c.Judet)
-
-                .ToListAsync();
+                Localitate = await _context.Localitate
+                .Include(l => l.Judet).ToListAsync();
             }
         }
     }

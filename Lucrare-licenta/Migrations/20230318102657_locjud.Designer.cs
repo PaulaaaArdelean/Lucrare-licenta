@@ -4,6 +4,7 @@ using Lucrare_licenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    partial class Lucrare_licentaContextModelSnapshot : ModelSnapshot
+    [Migration("20230318102657_locjud")]
+    partial class locjud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.15")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -423,11 +425,11 @@ namespace Lucrare_licenta.Migrations
             modelBuilder.Entity("Lucrare_licenta.Models.Client", b =>
                 {
                     b.HasOne("Lucrare_licenta.Models.Judet", "Judet")
-                        .WithMany("Clienti")
+                        .WithMany()
                         .HasForeignKey("JudetID");
 
                     b.HasOne("Lucrare_licenta.Models.Localitate", "Localitate")
-                        .WithMany("Clienti")
+                        .WithMany()
                         .HasForeignKey("LocalitateID");
 
                     b.HasOne("Lucrare_licenta.Models.TipAsigurat", "TipAsigurat")
@@ -539,14 +541,7 @@ namespace Lucrare_licenta.Migrations
 
             modelBuilder.Entity("Lucrare_licenta.Models.Judet", b =>
                 {
-                    b.Navigation("Clienti");
-
                     b.Navigation("Localitati");
-                });
-
-            modelBuilder.Entity("Lucrare_licenta.Models.Localitate", b =>
-                {
-                    b.Navigation("Clienti");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Oferta", b =>

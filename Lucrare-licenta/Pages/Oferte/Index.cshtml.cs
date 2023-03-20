@@ -9,6 +9,7 @@ using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lucrare_licenta.Pages.Oferte
 {
@@ -25,24 +26,25 @@ namespace Lucrare_licenta.Pages.Oferte
         public OfertaData OfertaD { get; set; }
         public int OfertaID { get; set; }
         public int OptionalID { get; set; }
+        public string NumeSortCresc { get; set; }
+        public string NumeSortDesc { get; set; }
+
         public String CurrentFilter { get; set; }
 
-        public async Task OnGetAsync(int? id, int? optionalID, string searchString)
+        public async Task OnGetAsync(int? id, int? optionalID, string numeSortCresc,string numeSortDesc, string searchString)
         {
 
-
-            var anFabricatie = _context.Oferta.Select(x => new {x.ID, anulFabricatiei = x.AnFabricatie});
-            var capacitateCilindrica = _context.Oferta.Select(x => new { x.ID, capacitateaCilindrica = x.CapacitateCilindrica });
-
-
-                //var pret = anFabricatie * 0.2 + capacitateCilindrica * 0.8 ;
-
+            NumeSortDesc = String.IsNullOrEmpty(numeSortDesc) ? "nume_desc" : "";
+            NumeSortCresc = String.IsNullOrEmpty(numeSortCresc) ? "nume_cresc" : "";
             CurrentFilter = searchString;
 
             OfertaD = new OfertaData();
 
             OfertaD.Oferte = await _context.Oferta
             .Include(b => b.Client)
+            .ThenInclude(c=>c.Judet)
+             .Include(b => b.Client)
+            .ThenInclude(c => c.Localitate)
             .Include(b => b.TipCombustibil)
             .Include(b => b.CategorieVehicul)
 

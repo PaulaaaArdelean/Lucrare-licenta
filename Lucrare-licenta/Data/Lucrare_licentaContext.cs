@@ -31,5 +31,9 @@ namespace Lucrare_licenta.Data
         public DbSet<Lucrare_licenta.Models.Oferta> Oferta { get; set; }
 
         public DbSet<Lucrare_licenta.Models.AtributOptional> AtributOptional { get; set; }
+        public DbSet<Lucrare_licenta.Models.TipAsigurat> TipAsigurat { get; set; }
+        public DbSet<Lucrare_licenta.Models.Judet> Judet { get; set; }
+        public DbSet<Lucrare_licenta.Models.Localitate> Localitate { get; set; }
+
     }
 }

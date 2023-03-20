@@ -83,22 +83,18 @@ namespace Lucrare_licenta.Models
                 return NumeReprezentantFirma + " " + PrenumeReprezentantFirma;
             }
         }
-
-
-
-
-
-
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
+  // [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
         [StringLength(30, MinimumLength = 2)]
 
-        public string Judet { get; set; }
+        public int? JudetID { get; set; }
+        public Judet? Judet { get; set; }
 
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele localitatii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
+      //  [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele localitatii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
         [StringLength(30, MinimumLength = 2)]
 
-        public string Localitate { get; set; }
+        public int? LocalitateID { get; set; }
+        public Localitate? Localitate { get; set; }
 
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele strazii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
@@ -124,6 +120,7 @@ namespace Lucrare_licenta.Models
         [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
         public string Telefon { get; set; }
 
+       
 
         [Display(Name = "Numele clientului")]
         public string? NumeClientFirma
@@ -133,6 +130,17 @@ namespace Lucrare_licenta.Models
                 return NumeIntreg + " " + NumeFirma;
             }
         }
+        [Display(Name="CNP/CUI")]
+        public string? CNPCUI
+        {
+            get
+            {
+                return CNP + " " + CUI;
+            }
+        }
+        [Display(Name = "Tipul asiguratului")]
+        public int? TipAsiguratID { get; set; }
+        public TipAsigurat? TipAsigurat { get; set; }
 
         public ICollection<PersoanaFizica>? PersoaneFizice { get; set; }
         public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }

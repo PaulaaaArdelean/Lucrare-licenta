@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 
-namespace Lucrare_licenta.Pages.Oferte
+namespace Lucrare_licenta.Pages.Localitati
 {
     public class DetailsModel : PageModel
     {
@@ -19,28 +19,23 @@ namespace Lucrare_licenta.Pages.Oferte
             _context = context;
         }
 
-      public Oferta Oferta { get; set; }
+      public Localitate Localitate { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Oferta == null)
+            if (id == null || _context.Localitate == null)
             {
                 return NotFound();
             }
 
-            var oferta = await _context.Oferta
-                .Include(c => c.Client)
-                .Include(c => c.TipCombustibil)
-                .Include(c => c.CategorieVehicul)
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (oferta == null)
+            var localitate = await _context.Localitate.FirstOrDefaultAsync(m => m.ID == id);
+            if (localitate == null)
             {
                 return NotFound();
             }
             else 
             {
-                Oferta = oferta;
+                Localitate = localitate;
             }
             return Page();
         }

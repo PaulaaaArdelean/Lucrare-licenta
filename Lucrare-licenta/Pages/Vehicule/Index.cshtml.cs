@@ -8,9 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Lucrare_licenta.Pages.Vehicule
 {
+    [Authorize(Roles = "Admin")]
+
     public class IndexModel : PageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;

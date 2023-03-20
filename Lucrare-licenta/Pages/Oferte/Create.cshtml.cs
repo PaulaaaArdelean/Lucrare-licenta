@@ -27,6 +27,42 @@ namespace Lucrare_licenta.Pages.Oferte
 
         public IActionResult OnGet()
         {
+            // var anFabricatie = _context.Oferta.Select(x => new { x.ID, anulFabricatiei = x.AnFabricatie });
+
+            var capacitateCilindrica = _context.Oferta
+               .Where(o => o.CapacitateCilindrica <= 1200).First();
+               capacitateCilindrica.Pret=300;
+            _context.SaveChanges();
+
+
+
+
+            var capacitateCilindrica1 = _context.Oferta
+               .Where(o => o.CapacitateCilindrica >= 1200).OrderBy(o=>o.ID).First();
+            capacitateCilindrica.Pret = 400;
+            _context.SaveChanges();
+
+
+            //.Select(x => new { x.ID, x.Pret = 300})
+
+
+            //var pret = anFabricatie * 0.2 + capacitateCilindrica * 0.8 ;
+
+
+            //  var capacitateCilindrica=_context.Oferta
+            //    .Select(x=> new
+            //  { x.ID,
+            //    capacitateaCilindrica=x.CapacitateCilindrica });
+
+
+
+            //            if (capacitateCilindrica<1200)
+            //          {
+
+            //        }
+
+            ViewData["PretID"] = new SelectList(_context.Oferta, "ID", "Pret");
+
             var userName = _userManager.GetUserName(User);
 
             var detaliiClient = _context.Client

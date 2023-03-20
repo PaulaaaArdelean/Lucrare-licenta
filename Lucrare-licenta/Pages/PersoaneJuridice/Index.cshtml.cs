@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lucrare_licenta.Data;
 using Lucrare_licenta.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Lucrare_licenta.Pages.PersoaneJuridice
 {
+    [Authorize(Roles = "Admin")]
+
     public class IndexModel : PageModel
     {
         private readonly Lucrare_licenta.Data.Lucrare_licentaContext _context;

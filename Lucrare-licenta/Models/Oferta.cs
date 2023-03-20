@@ -26,7 +26,7 @@ namespace Lucrare_licenta.Models
         public string AnFabricatie { get; set; }
         [Display(Name = "Capacitate cilindrica")]
         [RegularExpression(@"^[0-9]{3,4}$", ErrorMessage = "Capacitatea cilindrica este formata din 3 sau 4 cifre")]
-        public string CapacitateCilindrica { get; set; }
+        public int CapacitateCilindrica { get; set; }
         [Display(Name = "Serie CIV")]
         [RegularExpression(@"^\(?([A-Z]{1})\)?([0-9]{6})$", ErrorMessage = "Seria CIV trebuie sa aiba forma A123456")]
 
@@ -46,6 +46,9 @@ namespace Lucrare_licenta.Models
         public int? TipCombustibilID { get; set; }
         [Display(Name = "Tipul de combustibil")]
         public TipCombustibil? TipCombustibil { get; set; }
+
+
+        public int Pret { get; set; }
         [Display(Name = "Optional")]
 
         public ICollection<AtributOptionalOferta>? AtributeOptionaleOferta { get; set; }
