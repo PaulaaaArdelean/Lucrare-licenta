@@ -36,7 +36,9 @@ namespace Lucrare_licenta.Pages.PersoaneJuridice
                 return NotFound();
             }
             PersoanaJuridica = persoanajuridica;
-           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
+           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "NumeFirma");
+            ViewData["JudetID"] = new SelectList(_context.Judet, "ID", "Judetul");
+            ViewData["LocalitateID"] = new SelectList(_context.Localitate, "ID", "Localitatea");
             return Page();
         }
 

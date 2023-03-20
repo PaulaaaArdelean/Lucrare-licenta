@@ -30,7 +30,11 @@ namespace Lucrare_licenta.Pages.PersoaneFizice
             if (_context.PersoanaFizica != null)
             {
                 PersoanaFizica = await _context.PersoanaFizica
-                .Include(p => p.Client).ToListAsync();
+                .Include(p => p.Client)
+                     .ThenInclude(c => c.Judet)
+                      .Include(p => p.Client)
+                     .ThenInclude(c => c.Localitate)
+                .ToListAsync();
             }
         }
     }

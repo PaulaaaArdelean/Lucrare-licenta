@@ -97,8 +97,6 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
             public string? PrenumeProprietar { get; set; }
 
 
-
-
             [Display(Name = "Serie CI")]
             [RegularExpression("^[A-Z]{2}$", ErrorMessage = "Seria CI este formata din doua litere mari, care vin de regulă vin de mnemonicul județului (ex. IS-Iași ), dar nu este obligatoriu (ex. AS-Argeș)")]
             public string? SerieCI { get; set; }
@@ -107,10 +105,6 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
             [Display(Name = "Numar CI")]
             [RegularExpression("^[0-9]{6}$", ErrorMessage = "Numarul cartii de identitate trebuie sa contina 6 cifre")]
             public string? NumarCI { get; set; }
-
-
-
-
 
 
             [RegularExpression("^[1-9][0-9]{7}$", ErrorMessage = "CUI-ul trebuie sa fie alcatuit din 8 cifre si nu poate incepe cu 0")]
@@ -140,31 +134,23 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
             [StringLength(30, MinimumLength = 3)]
             public string? PrenumeReprezentantFirma { get; set; }
 
-         
 
-            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
-            [StringLength(30, MinimumLength = 2)]
-            [Required]
+            // [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
+            //[StringLength(30, MinimumLength = 2)]
+            //  [Required]
+            [Display(Name ="Judetul")]
+            public int JudetID { get; set; }
+            public Judet? Judet { get; set; }
 
-            public string Judet { get; set; }
-
-
-            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele localitatii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
-            [StringLength(30, MinimumLength = 2)]
-            [Required]
-
-            public string Localitate { get; set; }
-
+            [Display(Name = "Localitatea")]
+            public int LocalitateID { get; set; }
+            public Localitate? Localitate { get; set; }
 
             [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele strazii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
             [StringLength(30, MinimumLength = 2)]
             [Required]
 
             public string Strada { get; set; }
-
-
-
-
             public string Numar { get; set; }
 
 
@@ -233,8 +219,8 @@ namespace Lucrare_licenta.Areas.Identity.Pages.Account
             Client.NumeFirma = Input.NumeFirma;
             Client.NumeReprezentantFirma = Input.NumeReprezentantFirma;
             Client.PrenumeReprezentantFirma = Input.PrenumeReprezentantFirma;
-           // Client.Judet = Select.Judet;
-            //Client.Localitate = Input.Localitate;
+            Client.Judet = Input.Judet;
+            Client.Localitate = Input.Localitate;
             Client.Strada = Input.Strada;
             Client.Numar = Input.Numar;
             Client.CodPostal = Input.CodPostal;

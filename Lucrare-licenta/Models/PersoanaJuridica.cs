@@ -7,5 +7,10 @@
         public Client? Client { get; set; }
         public int? TipSocietateID { get; set; }
         public TipSocietate? TipSocietate { get; set; }
+        public int? JudetID { get; set; }
+        public Judet? Judet { get; set; }
+
+        public int? LocalitateID { get; set; }
+        public Localitate? Localitate { get; set; }
     }
 }

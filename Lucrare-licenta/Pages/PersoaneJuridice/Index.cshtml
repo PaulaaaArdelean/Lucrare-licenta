@@ -30,10 +30,10 @@
                 @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.PrenumeReprezentantFirma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Judet)
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Judet.Judetul)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Localitate)
+                @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Localitate.Localitatea)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PersoanaJuridica[0].Client.Strada)
@@ -76,21 +76,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Client.PrenumeReprezentantFirma)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Client.Judet)
+           @*     <td>
+                    @Html.DisplayFor(modelItem => item.Client.Judet.Judetul)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.Localitate)
-                </td>
+                    @Html.DisplayFor(modelItem => item.Client.Localitate.Localitatea)
+                </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.Strada)
+                    @Html.DisplayFor(modelItem => item.Client.Adresa)
                 </td>
-                <td>
+            @*    <td>
                     @Html.DisplayFor(modelItem => item.Client.Numar)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Client.CodPostal)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Client.Email)
                 </td>

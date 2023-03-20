@@ -83,17 +83,15 @@ namespace Lucrare_licenta.Models
                 return NumeReprezentantFirma + " " + PrenumeReprezentantFirma;
             }
         }
-  // [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
-        [StringLength(30, MinimumLength = 2)]
-
-        public int? JudetID { get; set; }
+        // [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele judetului trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
+        // [StringLength(30, MinimumLength = 2)]
+        [Display(Name = "Judetul")]
+        public int JudetID { get; set; }
         public Judet? Judet { get; set; }
 
 
-      //  [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele localitatii trebuie sa inceapa cu majuscula si sa aiba minim 2 caractere")]
-        [StringLength(30, MinimumLength = 2)]
-
-        public int? LocalitateID { get; set; }
+        [Display(Name = "Localitatea")]
+        public int LocalitateID { get; set; }
         public Localitate? Localitate { get; set; }
 
 
@@ -141,7 +139,15 @@ namespace Lucrare_licenta.Models
         [Display(Name = "Tipul asiguratului")]
         public int? TipAsiguratID { get; set; }
         public TipAsigurat? TipAsigurat { get; set; }
+        
 
+        public string? Adresa
+        {
+            get
+            {
+                return " jud. " + Judet.Judetul + ", loc. " + Localitate.Localitatea + ", nr. " + Numar + ", strada " + Strada + ", " + CodPostal;
+            }
+        }
         public ICollection<PersoanaFizica>? PersoaneFizice { get; set; }
         public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }
     }

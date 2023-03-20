@@ -32,6 +32,10 @@ namespace Lucrare_licenta.Pages.PersoaneJuridice
                 PersoanaJuridica = await _context.PersoanaJuridica
                 .Include(p => p.Client)
                 .ThenInclude(p => p.TipSocietate)
+                .Include(p => p.Client)
+                .Include(c => c.Judet)
+                 //.Include(p => p.Client)
+                .Include(c => c.Localitate)
                 .ToListAsync();
             }
         }

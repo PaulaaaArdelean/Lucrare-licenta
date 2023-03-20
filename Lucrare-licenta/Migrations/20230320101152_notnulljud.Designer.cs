@@ -4,6 +4,7 @@ using Lucrare_licenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lucrare_licenta.Migrations
 {
     [DbContext(typeof(Lucrare_licentaContext))]
-    partial class Lucrare_licentaContextModelSnapshot : ModelSnapshot
+    [Migration("20230320101152_notnulljud")]
+    partial class notnulljud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,9 +106,11 @@ namespace Lucrare_licenta.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("JudetID")
+                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("LocalitateID")
+                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<string>("Numar")
@@ -290,19 +294,9 @@ namespace Lucrare_licenta.Migrations
                     b.Property<int?>("ClientID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocalitateID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
                     b.HasIndex("ClientID");
-
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
 
                     b.ToTable("PersoanaFizica");
                 });
@@ -318,22 +312,12 @@ namespace Lucrare_licenta.Migrations
                     b.Property<int?>("ClientID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocalitateID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TipSocietateID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ClientID");
-
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
 
                     b.HasIndex("TipSocietateID");
 
@@ -505,19 +489,7 @@ namespace Lucrare_licenta.Migrations
                         .WithMany("PersoaneFizice")
                         .HasForeignKey("ClientID");
 
-                    b.HasOne("Lucrare_licenta.Models.Judet", "Judet")
-                        .WithMany("PersoaneFizice")
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Lucrare_licenta.Models.Localitate", "Localitate")
-                        .WithMany("PersoaneFizice")
-                        .HasForeignKey("LocalitateID");
-
                     b.Navigation("Client");
-
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.PersoanaJuridica", b =>
@@ -526,23 +498,11 @@ namespace Lucrare_licenta.Migrations
                         .WithMany("PersoaneJuridice")
                         .HasForeignKey("ClientID");
 
-                    b.HasOne("Lucrare_licenta.Models.Judet", "Judet")
-                        .WithMany("PersoaneJuridice")
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Lucrare_licenta.Models.Localitate", "Localitate")
-                        .WithMany("PersoaneJuridice")
-                        .HasForeignKey("LocalitateID");
-
                     b.HasOne("Lucrare_licenta.Models.TipSocietate", "TipSocietate")
                         .WithMany("PersoaneJuridice")
                         .HasForeignKey("TipSocietateID");
 
                     b.Navigation("Client");
-
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
 
                     b.Navigation("TipSocietate");
                 });
@@ -588,19 +548,11 @@ namespace Lucrare_licenta.Migrations
                     b.Navigation("Clienti");
 
                     b.Navigation("Localitati");
-
-                    b.Navigation("PersoaneFizice");
-
-                    b.Navigation("PersoaneJuridice");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Localitate", b =>
                 {
                     b.Navigation("Clienti");
-
-                    b.Navigation("PersoaneFizice");
-
-                    b.Navigation("PersoaneJuridice");
                 });
 
             modelBuilder.Entity("Lucrare_licenta.Models.Oferta", b =>

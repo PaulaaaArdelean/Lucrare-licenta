@@ -7,6 +7,7 @@
         public int? JudetID { get; set; }
         public Judet? Judet { get; set; }
         public ICollection<Client>? Clienti { get; set; }
-
+        public ICollection<PersoanaFizica>? PersoaneFizice { get; set; }
+        public ICollection<PersoanaJuridica>? PersoaneJuridice { get; set; }
     }
 }

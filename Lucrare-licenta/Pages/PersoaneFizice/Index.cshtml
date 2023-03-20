@@ -30,19 +30,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Varsta)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Judet)
-            </th>
-            <th>
+          @*  <th>
+                @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Adresa)
+            </th>*@
+           <th>
                 @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Localitate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Strada)
 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.Numar)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PersoanaFizica[0].Client.CodPostal)
             </th>
@@ -76,9 +72,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Client.Varsta)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Client.Judet)
-                </td>
+               @* <td>
+                    @Html.DisplayFor(modelItem => item.Client.Adresa)
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Client.Localitate)
                 </td>

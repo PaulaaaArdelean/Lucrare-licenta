@@ -32,9 +32,8 @@ namespace Lucrare_licenta.Pages.Clienti
                 Client = await _context.Client
                 .Include(c => c.TipSocietate)
                 .Include(c => c.TipAsigurat)
-                  .Include(c => c.Localitate)
-                     .ThenInclude(c => c.Judet)
-
+                .Include(c => c.Localitate)
+                .Include(c => c.Judet)
                 .ToListAsync();
             }
         }

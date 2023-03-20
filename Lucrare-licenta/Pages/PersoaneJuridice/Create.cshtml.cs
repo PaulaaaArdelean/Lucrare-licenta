@@ -22,6 +22,8 @@ namespace Lucrare_licenta.Pages.PersoaneJuridice
         public IActionResult OnGet()
         {
         ViewData["ClientID"] = new SelectList(_context.Client, "ID", "NumeFirma");
+            ViewData["JudetID"] = new SelectList(_context.Judet, "ID", "Judetul");
+            ViewData["LocalitateID"] = new SelectList(_context.Localitate, "ID", "Localitatea");
             return Page();
         }
 
