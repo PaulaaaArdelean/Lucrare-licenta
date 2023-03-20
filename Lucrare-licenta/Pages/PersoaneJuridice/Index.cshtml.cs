@@ -34,7 +34,7 @@ namespace Lucrare_licenta.Pages.PersoaneJuridice
                 .ThenInclude(p => p.TipSocietate)
                 .Include(p => p.Client)
                 .Include(c => c.Judet)
-                 //.Include(p => p.Client)
+                 .Include(p => p.Client)
                 .Include(c => c.Localitate)
                 .ToListAsync();
             }
